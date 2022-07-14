@@ -7,7 +7,7 @@ REPLICATES, = glob_wildcards(config['output_dir']+"/consensus/consensusses_{id}.
 
 rule all:
     input:          
-        expand("{prefix}/predicthaplo/output_{samples}/{samples}.conf", prefix=config['output_dir'], samples=SAMPLES)
+        expand("{prefix}/haplotypes/{samples}_haplotypes.fa", prefix=config['output_dir'], samples=SAMPLES)
 
 
 rule concatenate:
@@ -84,5 +84,16 @@ rule predicthaplo:
         mv {input} {output}
         """
 
+rule gather_haplotype:
+    input:
+        "{prefix}/predicthaplo/output_{samples}/{samples}.conf"
+    output:
+        "{prefix}/haplotypes/{samples}_haplotypes.fa"
+    shell:
+        """
+        mkdir -p {config[output_dir]}/haplotypes
+        python scripts/gather_haplotypes.py {config[output_dir]}/predicthaplo/output_{wildcards.samples}/{wildcards.samples}global_*.fas \
+        {output} {wildcards.samples}
+        """
 
 

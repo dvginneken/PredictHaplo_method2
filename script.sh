@@ -4,8 +4,8 @@
 
 
 
-output_dir="patient1"
-haplohiv_folder="/hpc/dla_lti/dvanginneken/HaploHIV_Daphne/haplohiv1/patient1_out/"
+output_dir="patient2"
+haplohiv_folder="/hpc/dla_lti/dvanginneken/HaploHIV_Daphne/haplohiv2/patient2_out/"
 table="/hpc/dla_lti/dvanginneken/MergedTimepoints_PredictHaplo/Mastertable_timepoints.tsv"
 
 mkdir -p ${output_dir}/consensus
