@@ -11,3 +11,4 @@ dependencies:
   - mafft >= 7.505
   - emboss=6.6.0
   - bwa
+  - seqkit >= 2.2.0
