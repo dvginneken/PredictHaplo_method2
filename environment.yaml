@@ -1,4 +1,4 @@
-name: combine
+name: haplotyping
 channels:
   - bioconda
   - conda-forge
