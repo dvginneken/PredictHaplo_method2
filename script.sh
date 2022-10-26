@@ -1,13 +1,10 @@
 #!/bin/bash
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=M.I.vanGinneken@umcutrecht.nl
 
+output_dir="$1"
+haplohiv_folder="$2"
+table="mastertable.tsv"
 
-
-output_dir="patient2"
-haplohiv_folder="/hpc/dla_lti/dvanginneken/HaploHIV_Daphne/haplohiv2/patient2_out/"
-table="/hpc/dla_lti/dvanginneken/MergedTimepoints_PredictHaplo/Mastertable_timepoints.tsv"
-
+# Retrieve the name and locations of the sample consensus files to be taken together (replicates)
 mkdir -p ${output_dir}/consensus
 if [ "$(ls -A ${output_dir}/consensus)" ]; then
     echo "    Already grepped consensus name"
@@ -18,6 +15,6 @@ else
     done
 fi
 
-
+# Run the haplotyping pipeline
 snakemake -j 8 --config output_dir=$output_dir haplohiv_folder=$haplohiv_folder table=$table --
 
